@@ -14,8 +14,7 @@ function embaralhar<T>(array: T[]): T[] {
     .sort((a, b) => a.ordem - b.ordem)
     .map(obj => obj.item);
 }
-
-const perguntas: Pergunta[] = [
+ const perguntas: Pergunta[] = [
   { codigoPais: 'JP', pergunta: 'Qual é a arte tradicional japonesa de dobrar papel?', alternativas: ['Origami', 'Ikebana', 'Kintsugi', 'Haiku'], respostaCorreta: 'Origami' },
   { codigoPais: 'BR', pergunta: 'Qual dança é símbolo do carnaval brasileiro?', alternativas: ['Samba', 'Frevo', 'Axé', 'Forró'], respostaCorreta: 'Samba' },
   { codigoPais: 'IN', pergunta: 'Qual festival indiano celebra as cores?', alternativas: ['Holi', 'Diwali', 'Navratri', 'Eid'], respostaCorreta: 'Holi' },
@@ -47,7 +46,12 @@ const perguntas: Pergunta[] = [
   { codigoPais: 'IL', pergunta: 'Qual prato é típico de Israel?', alternativas: ['Falafel', 'Tacos', 'Pizza', 'Curry'], respostaCorreta: 'Falafel' },
 ];
 
-const QuizCultura = () => {
+
+type Props = {
+  onAcerto?: () => void;
+};
+
+const QuizCultura = ({ onAcerto }: Props) => {
   const [indice, setIndice] = useState(0);
   const [pontuacao, setPontuacao] = useState(0);
   const [finalizado, setFinalizado] = useState(false);
@@ -57,6 +61,7 @@ const QuizCultura = () => {
   const verificarResposta = (resposta: string) => {
     if (resposta === perguntaAtual.respostaCorreta) {
       setPontuacao(pontuacao + 1);
+      if (onAcerto) onAcerto(); // 🎉 dispara partículas!
     }
 
     if (indice + 1 < perguntas.length) {
@@ -67,7 +72,7 @@ const QuizCultura = () => {
   };
 
   return (
-    <div className="text-center text-white">
+    <div className="text-center bg-white text-blue-900 rounded-xl p-6 shadow-xl">
       {!finalizado ? (
         <>
           <h2 className="text-2xl font-bold mb-4">{perguntaAtual.pergunta}</h2>

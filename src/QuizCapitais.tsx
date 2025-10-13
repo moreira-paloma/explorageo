@@ -47,7 +47,11 @@ const perguntas: Pergunta[] = [
   { codigoPais: 'NZ', alternativas: ['Wellington', 'Auckland', 'Christchurch', 'Hamilton'], respostaCorreta: 'Wellington' },
 ];
 
-const QuizCapitais = () => {
+type Props = {
+  onAcerto?: () => void;
+};
+
+const QuizCapitais = ({ onAcerto }: Props) => {
   const [indice, setIndice] = useState(0);
   const [pontuacao, setPontuacao] = useState(0);
   const [finalizado, setFinalizado] = useState(false);
@@ -57,6 +61,7 @@ const QuizCapitais = () => {
   const verificarResposta = (resposta: string) => {
     if (resposta === perguntaAtual.respostaCorreta) {
       setPontuacao(pontuacao + 1);
+      if (onAcerto) onAcerto(); // 🎉 dispara partículas!
     }
 
     if (indice + 1 < perguntas.length) {
@@ -67,7 +72,7 @@ const QuizCapitais = () => {
   };
 
   return (
-    <div className="text-center text-white">
+    <div className="text-center bg-white text-blue-900 rounded-xl p-6 shadow-xl">
       {!finalizado ? (
         <>
           <h2 className="text-2xl font-bold mb-4">Qual é a capital deste país?</h2>

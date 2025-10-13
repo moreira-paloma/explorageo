@@ -3,12 +3,43 @@ import CartaoJogo from './CartaoJogo';
 import QuizBandeiras from './QuizBandeiras';
 import QuizCapitais from './QuizCapitais';
 import QuizCultura from './QuizCultura';
+import CadastroUsuario from './CadastroUsuario';
 
 function App() {
-  const [telaAtual, setTelaAtual] = useState<'inicio' | 'bandeiras' | 'capitais' | 'cultura'>('inicio');
+  const [telaAtual, setTelaAtual] = useState('inicio');
+
+  const [particulas, setParticulas] = useState<
+    { id: number; x: number; y: number; emoji: string }[]
+  >([]);
+
+  const mostrarParticulas = () => {
+    const novas = Array.from({ length: 12 }, (_, i) => ({
+      id: Date.now() + i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      emoji: ['🎉', '⭐', '✨'][Math.floor(Math.random() * 3)],
+    }));
+    setParticulas(novas);
+    setTimeout(() => setParticulas([]), 3000);
+  };
 
   return (
     <div className="flex flex-col min-h-screen text-white relative overflow-auto">
+     
+      {particulas.map((p) => (
+        <div
+          key={p.id}
+            className="absolute text-9xl animate-ping z-50 pointer-events-none"
+           style={{
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            animationDuration: '4s',
+          }}
+        >
+          {p.emoji}
+        </div>
+      ))}
+
       <div
         className="absolute top-0 left-0 w-full h-full -z-10"
         style={{
@@ -20,7 +51,6 @@ function App() {
         }}
       ></div>
 
-      
       <header className="fixed top-0 left-0 w-full z-20 bg-blue-900/80 backdrop-blur-md shadow-md">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-extrabold tracking-wide text-white">Explora Geo 🌍</h1>
@@ -29,12 +59,12 @@ function App() {
             <button onClick={() => setTelaAtual('bandeiras')} className="hover:text-blue-300 transition">Bandeiras</button>
             <button onClick={() => setTelaAtual('capitais')} className="hover:text-blue-300 transition">Capitais</button>
             <button onClick={() => setTelaAtual('cultura')} className="hover:text-blue-300 transition">Cultura</button>
+            <button onClick={() => setTelaAtual('cadastro')} className="hover:text-blue-300 transition">Cadastro</button>
           </nav>
         </div>
       </header>
       <div className="h-[80px]"></div>
 
-      {/* content */}
       <main className="flex-grow max-w-6xl mx-auto px-6 py-12">
         {telaAtual === 'inicio' && (
           <div className="text-center mb-12">
@@ -78,16 +108,15 @@ function App() {
                 onClick={() => setTelaAtual('cultura')}
               />
             </div>
+
+     
           </div>
         )}
 
         {telaAtual === 'bandeiras' && (
           <div className="text-center">
-            <QuizBandeiras />
-            <button
-              className="mt-8 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-              onClick={() => setTelaAtual('inicio')}
-            >
+            <QuizBandeiras onAcerto={mostrarParticulas} />
+            <button className="mt-8 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={() => setTelaAtual('inicio')}>
               🔙 Voltar pro começo
             </button>
           </div>
@@ -95,11 +124,8 @@ function App() {
 
         {telaAtual === 'capitais' && (
           <div className="text-center">
-            <QuizCapitais />
-            <button
-              className="mt-8 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-              onClick={() => setTelaAtual('inicio')}
-            >
+            <QuizCapitais onAcerto={mostrarParticulas} />
+            <button className="mt-8 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={() => setTelaAtual('inicio')}>
               🔙 Voltar pro começo
             </button>
           </div>
@@ -107,11 +133,17 @@ function App() {
 
         {telaAtual === 'cultura' && (
           <div className="text-center">
-            <QuizCultura />
-            <button
-              className="mt-8 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-              onClick={() => setTelaAtual('inicio')}
-            >
+            <QuizCultura onAcerto={mostrarParticulas} />
+            <button className="mt-8 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={() => setTelaAtual('inicio')}>
+              🔙 Voltar pro começo
+            </button>
+          </div>
+        )}
+
+        {telaAtual === 'cadastro' && (
+          <div className="text-center">
+            <CadastroUsuario />
+            <button className="mt-8 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={() => setTelaAtual('inicio')}>
               🔙 Voltar pro começo
             </button>
           </div>
@@ -119,12 +151,10 @@ function App() {
       </main>
 
       <footer className="text-center text-sm text-white bg-blue-900 py-6">
-        Feito com React, Tailwind e minha vontade de fazer esse projeto funcionar. 💙🌍<br />
-       
+        Feito com React, Tailwind e minha vontade de fazer esse projeto funcionar. 💙🌍
       </footer>
     </div>
   );
 }
 
 export default App;
-
