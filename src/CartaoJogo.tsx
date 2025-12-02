@@ -1,55 +1,44 @@
 import React from 'react';
-import { Play, Star } from 'lucide-react';
 
-type Props = {
+interface Props {
   titulo: string;
   descricao: string;
   emoji: string;
-  cor: 'blue';
   disponivel: boolean;
   onClick: () => void;
+}
+
+// Gradientes personalizados por tema
+const cores: Record<string, string> = {
+  azul1: 'from-blue-900 to-blue-700',
+  azul2: 'from-indigo-900 to-indigo-700',
+  azul3: 'from-purple-900 to-purple-700',
+  azul4: 'from-cyan-900 to-cyan-700',
+  azul5: 'from-teal-900 to-teal-700',
+  padrao: 'from-gray-800 to-gray-600',
 };
 
-const CartaoJogo = ({ titulo, descricao, emoji, cor, disponivel, onClick }: Props) => {
-  const coresCard = {
-    blue: 'from-blue-700 to-blue-800 hover:from-blue-600 hover:to-blue-700',
-  };
+const CartaoJogo: React.FC<Props> = ({
+  titulo,
+  descricao,
+  emoji,
+  disponivel,
+  onClick,
+}) => {
+  // Força todos os cards a usarem o gradiente azul1
+  const gradiente = cores.azul1;
 
   return (
     <div
-      className={`group relative bg-blue-600/30 backdrop-blur-md rounded-3xl p-8 transition-all duration-500 border border-white/20 shadow-xl ${
-        disponivel
-          ? 'cursor-pointer hover:scale-105 hover:shadow-2xl hover:border-white/40'
-          : 'opacity-60 cursor-not-allowed'
-      }`}
       onClick={disponivel ? onClick : undefined}
+      className={`p-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:rotate-1
+        ${disponivel ? 'cursor-pointer opacity-100' : 'cursor-not-allowed opacity-40'}
+        bg-gradient-to-br ${gradiente}
+        text-white border border-white/10 shadow-lg hover:shadow-xl relative`}
     >
-      {!disponivel && (
-        <div className="absolute top-4 right-4 bg-cyan-300 text-blue-800 text-sm font-black px-4 py-2 rounded-full border-2 border-cyan-200 shadow-lg">
-          Em breve!
-        </div>
-      )}
-
-      <div className="text-center">
-        <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
-          {emoji}
-        </div>
-
-        <h3 className="text-2xl font-black text-white mb-4 group-hover:text-blue-200 transition-colors">
-          {titulo}
-        </h3>
-        <p className="text-white/90 mb-6 leading-relaxed font-semibold text-lg">{descricao}</p>
-
-        {disponivel && (
-          <button
-            className={`w-full bg-gradient-to-r ${coresCard[cor]} text-white py-4 px-6 rounded-2xl font-black text-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center space-x-3 group-hover:scale-105 border-4 border-white/50 shadow-lg`}
-          >
-            <Play className="w-5 h-5" />
-            <span>JOGAR</span>
-            <Star className="w-5 h-5 animate-pulse" />
-          </button>
-        )}
-      </div>
+    <div className="text-5xl mb-4">{emoji}</div>
+      <h3 className="text-xl font-bold mb-2">{titulo}</h3>
+      <p className="text-sm opacity-90">{descricao}</p>
     </div>
   );
 };

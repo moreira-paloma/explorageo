@@ -1,0 +1,33 @@
+### Criar usuário
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Paloma",
+  "email": "paloma@teste.com",
+  "password": "123"
+}
+
+### Fazer login
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "paloma@teste.com",
+  "password": "123"
+}
+
+### Atualizar estatísticas
+PUT http://localhost:5000/api/auth/atualizar
+Content-Type: application/json
+
+{
+  "userId": "6925b1aeb615d0994643ba94",
+  "incremento": 1,
+  "quiz": "Bandeiras",
+  "acertou": true,
+  "tempoResposta": 5
+}
+
+### Ver dados no Dashboard
+GET http://localhost:5000/api/auth/user/6925b1aeb615d0994643ba94

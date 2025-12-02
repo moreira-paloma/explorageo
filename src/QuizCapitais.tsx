@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 
 type Pergunta = {
@@ -48,27 +48,66 @@ const perguntas: Pergunta[] = [
 ];
 
 type Props = {
+  pontos: number;
   onAcerto?: () => void;
+  voltar: () => void;
 };
 
-const QuizCapitais = ({ onAcerto }: Props) => {
+const QuizCapitais = ({ pontos, onAcerto, voltar }: Props) => {
   const [indice, setIndice] = useState(0);
-  const [pontuacao, setPontuacao] = useState(0);
+  const [pontuacaoLocal, setPontuacaoLocal] = useState(0);
   const [finalizado, setFinalizado] = useState(false);
+  const [feedback, setFeedback] = useState('');
+  const [tempoRestante, setTempoRestante] = useState(10);
+  const [alternativasEmbaralhadas, setAlternativasEmbaralhadas] = useState<string[]>([]);
 
   const perguntaAtual = perguntas[indice];
 
-  const verificarResposta = (resposta: string) => {
-    if (resposta === perguntaAtual.respostaCorreta) {
-      setPontuacao(pontuacao + 1);
-      if (onAcerto) onAcerto(); // 🎉 dispara partículas!
+  useEffect(() => {
+    setAlternativasEmbaralhadas(embaralhar(perguntaAtual.alternativas));
+    setTempoRestante(10);
+  }, [indice]);
+
+  useEffect(() => {
+    if (finalizado) return;
+
+    if (tempoRestante <= 0) {
+      setFeedback(`⏱️ Tempo esgotado! A resposta certa era: ${perguntaAtual.respostaCorreta}`);
+      setTimeout(() => {
+        setFeedback('');
+        if (indice + 1 < perguntas.length) {
+          setIndice(indice + 1);
+        } else {
+          setFinalizado(true);
+        }
+      }, 1500);
+      return;
     }
 
-    if (indice + 1 < perguntas.length) {
-      setIndice(indice + 1);
+    const timer = setTimeout(() => {
+      setTempoRestante((t) => t - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [tempoRestante, finalizado]);
+
+  const verificarResposta = (resposta: string) => {
+    if (resposta === perguntaAtual.respostaCorreta) {
+      setPontuacaoLocal(p => p + 1);
+      setFeedback('✅ Acertou! 🎉');
+      if (onAcerto) onAcerto();
     } else {
-      setFinalizado(true);
+      setFeedback(`❌ Errou! A resposta certa era: ${perguntaAtual.respostaCorreta}`);
     }
+
+    setTimeout(() => {
+      setFeedback('');
+      if (indice + 1 < perguntas.length) {
+        setIndice(indice + 1);
+      } else {
+        setFinalizado(true);
+      }
+    }, 1500);
   };
 
   return (
@@ -81,8 +120,11 @@ const QuizCapitais = ({ onAcerto }: Props) => {
             svg
             style={{ width: '230px', height: 'auto', marginBottom: '20px' }}
           />
+          <div className="text-red-500 font-bold text-lg mb-4">
+            ⏳ Tempo restante: {tempoRestante}s
+          </div>
           <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-            {embaralhar(perguntaAtual.alternativas).map((alt, i) => (
+            {alternativasEmbaralhadas.map((alt, i) => (
               <button
                 key={i}
                 onClick={() => verificarResposta(alt)}
@@ -92,12 +134,24 @@ const QuizCapitais = ({ onAcerto }: Props) => {
               </button>
             ))}
           </div>
-          <p className="mt-6 text-lg">Perguntas {indice + 1} de {perguntas.length}</p>
+          {feedback && (
+            <div className="mt-4 text-lg font-semibold text-blue-900 bg-blue-100 px-4 py-2 rounded-lg shadow-md">
+              {feedback}
+            </div>
+          )}
+                  <p className="mt-6 text-lg">Pergunta {indice + 1} de {perguntas.length}</p>
         </>
       ) : (
         <div>
           <h2 className="text-3xl font-bold mb-4">🎉 Quiz Finalizado!</h2>
-          <p className="text-xl">Você acertou {pontuacao} de {perguntas.length} perguntas.</p>
+          <p className="text-xl mb-2">Você acertou {pontuacaoLocal} de {perguntas.length} perguntas neste quiz.</p>
+          <p className="text-lg mb-4">Pontuação total acumulada: {pontos}</p>
+          <button
+            onClick={voltar}
+            className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          >
+            🔙 Voltar ao início
+          </button>
         </div>
       )}
     </div>

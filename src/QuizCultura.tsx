@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactCountryFlag from 'react-country-flag';
 
 type Pergunta = {
@@ -14,7 +14,8 @@ function embaralhar<T>(array: T[]): T[] {
     .sort((a, b) => a.ordem - b.ordem)
     .map(obj => obj.item);
 }
- const perguntas: Pergunta[] = [
+
+const perguntas: Pergunta[] = [
   { codigoPais: 'JP', pergunta: 'Qual é a arte tradicional japonesa de dobrar papel?', alternativas: ['Origami', 'Ikebana', 'Kintsugi', 'Haiku'], respostaCorreta: 'Origami' },
   { codigoPais: 'BR', pergunta: 'Qual dança é símbolo do carnaval brasileiro?', alternativas: ['Samba', 'Frevo', 'Axé', 'Forró'], respostaCorreta: 'Samba' },
   { codigoPais: 'IN', pergunta: 'Qual festival indiano celebra as cores?', alternativas: ['Holi', 'Diwali', 'Navratri', 'Eid'], respostaCorreta: 'Holi' },
@@ -46,33 +47,71 @@ function embaralhar<T>(array: T[]): T[] {
   { codigoPais: 'IL', pergunta: 'Qual prato é típico de Israel?', alternativas: ['Falafel', 'Tacos', 'Pizza', 'Curry'], respostaCorreta: 'Falafel' },
 ];
 
-
 type Props = {
+  pontos: number;
   onAcerto?: () => void;
+  voltar: () => void;
 };
 
-const QuizCultura = ({ onAcerto }: Props) => {
+const QuizCultura = ({ pontos, onAcerto, voltar }: Props) => {
   const [indice, setIndice] = useState(0);
   const [pontuacao, setPontuacao] = useState(0);
   const [finalizado, setFinalizado] = useState(false);
+  const [tempoRestante, setTempoRestante] = useState(10);
+  const [alternativasEmbaralhadas, setAlternativasEmbaralhadas] = useState<string[]>([]);
+  const [feedback, setFeedback] = useState('');
 
   const perguntaAtual = perguntas[indice];
 
-  const verificarResposta = (resposta: string) => {
-    if (resposta === perguntaAtual.respostaCorreta) {
-      setPontuacao(pontuacao + 1);
-      if (onAcerto) onAcerto(); // 🎉 dispara partículas!
+  useEffect(() => {
+    setAlternativasEmbaralhadas(embaralhar(perguntaAtual.alternativas));
+    setTempoRestante(10);
+  }, [indice]);
+
+  useEffect(() => {
+    if (finalizado) return;
+
+    if (tempoRestante <= 0) {
+      setFeedback(`⏱️ Tempo esgotado! A resposta certa era: ${perguntaAtual.respostaCorreta}`);
+      setTimeout(() => {
+        setFeedback('');
+        if (indice + 1 < perguntas.length) {
+          setIndice(indice + 1);
+        } else {
+          setFinalizado(true);
+        }
+      }, 1500);
+      return;
     }
 
-    if (indice + 1 < perguntas.length) {
-      setIndice(indice + 1);
+    const timer = setTimeout(() => {
+      setTempoRestante((t) => t - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [tempoRestante, finalizado]);
+
+  const verificarResposta = (resposta: string) => {
+    if (resposta === perguntaAtual.respostaCorreta) {
+      setPontuacao(p => p + 1);
+            setFeedback('✅ Acertou! 🎉');
+      if (onAcerto) onAcerto();
     } else {
-      setFinalizado(true);
+      setFeedback(`❌ Errou! A resposta certa era: ${perguntaAtual.respostaCorreta}`);
     }
+
+    setTimeout(() => {
+      setFeedback('');
+      if (indice + 1 < perguntas.length) {
+        setIndice(indice + 1);
+      } else {
+        setFinalizado(true);
+      }
+    }, 1500);
   };
 
   return (
-    <div className="text-center bg-white text-blue-900 rounded-xl p-6 shadow-xl">
+    <div className="text-center bg-white text-blue-900 rounded-xl p-6 shadow-xl max-w-xl mx-auto">
       {!finalizado ? (
         <>
           <h2 className="text-2xl font-bold mb-4">{perguntaAtual.pergunta}</h2>
@@ -81,23 +120,38 @@ const QuizCultura = ({ onAcerto }: Props) => {
             svg
             style={{ width: '230px', height: 'auto', marginBottom: '20px' }}
           />
+          <div className="text-red-500 font-bold text-lg mb-4">
+            ⏳ Tempo restante: {tempoRestante}s
+          </div>
           <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-            {embaralhar(perguntaAtual.alternativas).map((alt, i) => (
+            {alternativasEmbaralhadas.map((alt, i) => (
               <button
                 key={i}
                 onClick={() => verificarResposta(alt)}
-                className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg w-full h-14 text-base font-semibold"
               >
                 {alt}
               </button>
             ))}
           </div>
+          {feedback && (
+            <div className="mt-4 text-lg font-semibold text-blue-900 bg-blue-100 px-4 py-2 rounded-lg shadow-md">
+              {feedback}
+            </div>
+          )}
           <p className="mt-6 text-lg">Pergunta {indice + 1} de {perguntas.length}</p>
         </>
       ) : (
         <div>
           <h2 className="text-3xl font-bold mb-4">🎉 Quiz Finalizado!</h2>
-          <p className="text-xl">Você acertou {pontuacao} de {perguntas.length} perguntas.</p>
+          <p className="text-xl mb-2">Você acertou {pontuacao} de {perguntas.length} perguntas neste quiz.</p>
+          <p className="text-lg mb-4">Pontuação total acumulada: {pontos}</p>
+          <button
+            onClick={voltar}
+            className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          >
+            🔙 Voltar ao início
+          </button>
         </div>
       )}
     </div>
