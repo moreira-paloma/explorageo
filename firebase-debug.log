@@ -1,0 +1,22 @@
+[debug] [2025-12-04T08:35:32.100Z] ----------------------------------------------------------------------
+[debug] [2025-12-04T08:35:32.102Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\eupal\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2025-12-04T08:35:32.102Z] CLI Version:   14.27.0
+[debug] [2025-12-04T08:35:32.102Z] Platform:      win32
+[debug] [2025-12-04T08:35:32.102Z] Node Version:  v22.20.0
+[debug] [2025-12-04T08:35:32.102Z] Time:          Thu Dec 04 2025 09:35:32 GMT+0100 (Horário Padrão da Europa Central)
+[debug] [2025-12-04T08:35:32.102Z] ----------------------------------------------------------------------
+[debug] 
+[info] i  The Firebase CLI’s MCP server feature can optionally make use of Gemini in Firebase. Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[info] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=972461241&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2025-12-04T08:35:36.526Z] Error: spawn cmd ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:285:19)
+    at onErrorNT (node:internal/child_process:483:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+[error] 
+[error] Error: An unexpected error has occurred.

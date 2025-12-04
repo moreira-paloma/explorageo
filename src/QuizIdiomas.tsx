@@ -61,10 +61,13 @@ const perguntas: Pergunta[] = [
   { codigoPais: 'UA', alternativas: ['Ucraniano', 'Russo', 'Polonês', 'Bielorrusso'], respostaCorreta: 'Ucraniano' },
   { codigoPais: 'CZ', alternativas: ['Tcheco', 'Eslovaco', 'Polonês', 'Alemão'], respostaCorreta: 'Tcheco' },
   { codigoPais: 'HU', alternativas: ['Húngaro', 'Alemão', 'Eslovaco', 'Romeno'], respostaCorreta: 'Húngaro' },
-  { codigoPais: 'RO', alternativas: ['Romeno', 'Húngaro', 'Russo', 'Búlgaro'], respostaCorreta: 'Romeno'},
   { codigoPais: 'RO', alternativas: ['Romeno', 'Húngaro', 'Russo', 'Búlgaro'], respostaCorreta: 'Romeno' },
   { codigoPais: 'BG', alternativas: ['Búlgaro', 'Turco', 'Romeno', 'Grego'], respostaCorreta: 'Búlgaro' },
+  { codigoPais: 'KR', alternativas: ['Coreano', 'Japonês', 'Chinês', 'Inglês'], respostaCorreta: 'Coreano' },
+  { codigoPais: 'NG', alternativas: ['Inglês', 'Hausa', 'Iorubá', 'Igbo'], respostaCorreta: 'Inglês' },
 ];
+
+
 
 type Props = {
   pontos: number;

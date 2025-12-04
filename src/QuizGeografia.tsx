@@ -55,7 +55,19 @@ const perguntas: Pergunta[] = [
   { codigoPais: 'KE', alternativas: ['África', 'Ásia', 'Europa', 'América do Norte'], respostaCorreta: 'África' },
   { codigoPais: 'TZ', alternativas: ['África', 'Ásia', 'Europa', 'América do Sul'], respostaCorreta: 'África' },
   { codigoPais: 'CZ', alternativas: ['Europa', 'Ásia', 'África', 'Oceania'], respostaCorreta: 'Europa' },
+  { codigoPais: 'SG', alternativas: ['Ásia', 'Europa', 'América do Sul', 'Oceania'], respostaCorreta: 'Ásia' },
+  { codigoPais: 'MY', alternativas: ['Ásia', 'África', 'América do Norte', 'Europa'], respostaCorreta: 'Ásia' },
+  { codigoPais: 'KH', alternativas: ['Ásia', 'África', 'América do Sul', 'Oceania'], respostaCorreta: 'Ásia' },
+  { codigoPais: 'MM', alternativas: ['Ásia', 'América do Norte', 'Europa', 'Oceania'], respostaCorreta: 'Ásia' },
+  { codigoPais: 'LK', alternativas: ['Ásia', 'América do Sul', 'Oceania', 'África'], respostaCorreta: 'Ásia' },
+  { codigoPais: 'BN', alternativas: ['Ásia', 'Europa', 'África', 'Oceania'], respostaCorreta: 'Ásia' },
+  { codigoPais: 'KH', alternativas: ['Ásia', 'África', 'Europa', 'América do Norte'], respostaCorreta: 'Ásia' },
+  { codigoPais: 'LA', alternativas: ['Ásia', 'África', 'Europa', 'América do Sul'], respostaCorreta: 'Ásia' },
+  { codigoPais: 'MN', alternativas: ['Ásia', 'África', 'Europa', 'América do Norte'], respostaCorreta: 'Ásia' },
+  { codigoPais: 'NP', alternativas: ['Ásia', 'África', 'América do Sul', 'Oceania'], respostaCorreta: 'Ásia' }
+
 ];
+
 
 type Props = {
   pontos: number;

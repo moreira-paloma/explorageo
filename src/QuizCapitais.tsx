@@ -45,7 +45,29 @@ const perguntas: Pergunta[] = [
   { codigoPais: 'GR', alternativas: ['Atenas', 'Salônica', 'Patras', 'Heraclião'], respostaCorreta: 'Atenas' },
   { codigoPais: 'DK', alternativas: ['Copenhague', 'Aarhus', 'Odense', 'Aalborg'], respostaCorreta: 'Copenhague' },
   { codigoPais: 'NZ', alternativas: ['Wellington', 'Auckland', 'Christchurch', 'Hamilton'], respostaCorreta: 'Wellington' },
+  { codigoPais: 'SE', alternativas: ['Estocolmo', 'Gotemburgo', 'Malmö', 'Lund'], respostaCorreta: 'Estocolmo' },
+  { codigoPais: 'SK', alternativas: ['Bratislava', 'Košice', 'Nitra', 'Prešov'], respostaCorreta: 'Bratislava' },
+  { codigoPais: 'RO', alternativas: ['Bucareste', 'Cluj-Napoca', 'Timișoara', 'Iași'], respostaCorreta: 'Bucareste' },
+  { codigoPais: 'HR', alternativas: ['Zagreb', 'Split', 'Dubrovnik', 'Osijek'], respostaCorreta: 'Zagreb' },
+  { codigoPais: 'BG', alternativas: ['Sofia', 'Plovdiv', 'Varna', 'Burgas'], respostaCorreta: 'Sofia' },
+  { codigoPais: 'AE', alternativas: ['Abu Dhabi', 'Dubai', 'Sharjah', 'Ajman'], respostaCorreta: 'Abu Dhabi' },
+  { codigoPais: 'KE', alternativas: ['Nairobi', 'Mombasa', 'Kisumu', 'Kisii'], respostaCorreta: 'Nairobi' },
+  { codigoPais: 'NG', alternativas: ['Abuja', 'Lagos', 'Kano', 'Port Harcourt'], respostaCorreta: 'Abuja' },
+  { codigoPais: 'TH', alternativas: ['Bangkok', 'Chiang Mai', 'Pattaya', 'Phuket'], respostaCorreta: 'Bangkok' },
+  { codigoPais: 'PH', alternativas: ['Manila', 'Cebu', 'Davao', 'Quezon City'], respostaCorreta: 'Manila' },
+  { codigoPais: 'VN', alternativas: ['Hanói', 'Ho Chi Minh', 'Da Nang', 'Hạ Long'], respostaCorreta: 'Hanói' },
+  { codigoPais: 'PE', alternativas: ['Lima', 'Cusco', 'Arequipa', 'Trujillo'], respostaCorreta: 'Lima' },
+  { codigoPais: 'CO', alternativas: ['Bogotá', 'Medellín', 'Cali', 'Barranquilla'], respostaCorreta: 'Bogotá' },
+  { codigoPais: 'CL', alternativas: ['Santiago', 'Valparaíso', 'Concepción', 'Viña del Mar'], respostaCorreta: 'Santiago' },
+  { codigoPais: 'EC', alternativas: ['Quito', 'Guayaquil', 'Cuenca', 'Ambato'], respostaCorreta: 'Quito' },
+  { codigoPais: 'UY', alternativas: ['Montevidéu', 'Salto', 'Paysandú', 'Maldonado'], respostaCorreta: 'Montevidéu' },
+  { codigoPais: 'PE', alternativas: ['Lima', 'Cusco', 'Arequipa', 'Trujillo'], respostaCorreta: 'Lima' },
+  { codigoPais: 'IS', alternativas: ['Reiquiavique', 'Akureyri', 'Reykjanesbær', 'Hafnarfjörður'], respostaCorreta: 'Reiquiavique' },
+  { codigoPais: 'MT', alternativas: ['Valletta', 'Mosta', 'Sliema', 'Birkirkara'], respostaCorreta: 'Valletta' },
+  { codigoPais: 'CY', alternativas: ['Nicósia', 'Limassol', 'Larnaca', 'Paphos'], respostaCorreta: 'Nicósia' },
+
 ];
+
 
 type Props = {
   pontos: number;

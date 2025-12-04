@@ -54,7 +54,18 @@ const perguntas: Pergunta[] = [
   { pergunta: 'Qual civilização criou os Jogos Olímpicos?', alternativas: ['Gregos', 'Romanos', 'Egípcios', 'Maias'], respostaCorreta: 'Gregos' },
   { pergunta: 'Quem foi o navegador português que chegou à Índia?', alternativas: ['Vasco da Gama', 'Pedro Álvares Cabral', 'Magalhães', 'Colombo'], respostaCorreta: 'Vasco da Gama' },
   { pergunta: 'Qual país foi dividido em Ocidental e Oriental após a Segunda Guerra?', alternativas: ['Alemanha', 'França', 'Itália', 'Polônia'], respostaCorreta: 'Alemanha' },
+  { pergunta: 'Quem foi o autor de “A Divina Comédia”?', alternativas: ['Dante Alighieri', 'Virgílio', 'Homero', 'Jorge Luis Borges'], respostaCorreta: 'Dante Alighieri' },
+  { pergunta: 'Qual foi o nome da primeira mulher a voar no espaço?', alternativas: ['Valentina Tereshkova', 'Sally Ride', 'Mae Jemison', 'Eileen Collins'], respostaCorreta: 'Valentina Tereshkova' },
+  { pergunta: 'Quem foi o autor de “O Príncipe”?', alternativas: ['Nicolau Maquiavel', 'Voltaire', 'Jean-Jacques Rousseau', 'Thomas Hobbes'], respostaCorreta: 'Nicolau Maquiavel' },
+  { pergunta: 'Quem foi o líder da Revolução Russa de 1917?', alternativas: ['Lênin', 'Stálin', 'Trotsky', 'Kerensky'], respostaCorreta: 'Lênin' },
+  { pergunta: 'Qual o nome do famoso muralista mexicano?', alternativas: ['Diego Rivera', 'Frida Kahlo', 'Salvador Dalí', 'Pablo Picasso'], respostaCorreta: 'Diego Rivera' },
+  { pergunta: 'Quem foi o criador da psicanálise?', alternativas: ['Sigmund Freud', 'Carl Jung', 'Alfred Adler', 'Jean Piaget'], respostaCorreta: 'Sigmund Freud' },
+  { pergunta: 'Quem descobriu a penicilina?', alternativas: ['Alexander Fleming', 'Marie Curie', 'Louis Pasteur', 'Edwin Jenner'], respostaCorreta: 'Alexander Fleming' },
+  { pergunta: 'Quem pintou “A Última Ceia”?', alternativas: ['Leonardo da Vinci', 'Michelangelo', 'Pablo Picasso', 'Vincent van Gogh'], respostaCorreta: 'Leonardo da Vinci' },
+  { pergunta: 'Qual é o nome da teoria que explica a origem do universo?', alternativas: ['Big Bang', 'Teoria da Relatividade', 'Teoria Quântica', 'Teoria do Caos'], respostaCorreta: 'Big Bang' },
+  { pergunta: 'Quem foi o primeiro imperador da China?', alternativas: ['Qin Shi Huang', 'Confúcio', 'Laozi', 'Genghis Khan'], respostaCorreta: 'Qin Shi Huang' },
 ];
+
 
 type Props = {
   pontos: number;

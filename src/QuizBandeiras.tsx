@@ -46,7 +46,29 @@ const perguntas: Pergunta[] = [
   { codigoPais: 'FI', alternativas: ['Finlândia', 'Estônia', 'Letônia', 'Lituânia'], respostaCorreta: 'Finlândia' },
   { codigoPais: 'NZ', alternativas: ['Austrália', 'Nova Zelândia', 'Fiji', 'Papua Nova Guiné'], respostaCorreta: 'Nova Zelândia' },
   { codigoPais: 'DK', alternativas: ['Noruega', 'Suécia', 'Dinamarca', 'Alemanha'], respostaCorreta: 'Dinamarca' },
+  { codigoPais: 'KR', alternativas: ['Coréia do Sul', 'Coréia do Norte', 'Japão', 'China'], respostaCorreta: 'Coréia do Sul' },
+  { codigoPais: 'SA', alternativas: ['Arábia Saudita', 'Irã', 'Iraque', 'Emirados Árabes Unidos'], respostaCorreta: 'Arábia Saudita' },
+  { codigoPais: 'EG', alternativas: ['Egito', 'Líbano', 'Siria', 'Palestina'], respostaCorreta: 'Egito' },
+  { codigoPais: 'VN', alternativas: ['Vietnã', 'Tailândia', 'Camboja', 'Laos'], respostaCorreta: 'Vietnã' },
+  { codigoPais: 'ID', alternativas: ['Indonésia', 'Filipinas', 'Malásia', 'Singapura'], respostaCorreta: 'Indonésia' },
+  { codigoPais: 'MY', alternativas: ['Malásia', 'Singapura', 'Filipinas', 'Brunei'], respostaCorreta: 'Malásia' },
+  { codigoPais: 'PK', alternativas: ['Paquistão', 'Afeganistão', 'Índia', 'Nepal'], respostaCorreta: 'Paquistão' },
+  { codigoPais: 'TH', alternativas: ['Tailândia', 'Vietnã', 'Singapura', 'Brunei'], respostaCorreta: 'Tailândia' },
+  { codigoPais: 'PH', alternativas: ['Filipinas', 'Malásia', 'Singapura', 'Indonésia'], respostaCorreta: 'Filipinas' },
+  { codigoPais: 'BD', alternativas: ['Bangladesh', 'Nepal', 'Paquistão', 'Índia'], respostaCorreta: 'Bangladesh' },
+  { codigoPais: 'KH', alternativas: ['Camboja', 'Laos', 'Vietnã', 'Tailândia'], respostaCorreta: 'Camboja' },
+  { codigoPais: 'LB', alternativas: ['Líbano', 'Síria', 'Israel', 'Palestina'], respostaCorreta: 'Líbano' },
+  { codigoPais: 'QA', alternativas: ['Catar', 'Bahrein', 'Emirados Árabes Unidos', 'Omã'], respostaCorreta: 'Catar' },
+  { codigoPais: 'JO', alternativas: ['Jordânia', 'Líbano', 'Síria', 'Irã'], respostaCorreta: 'Jordânia' },
+  { codigoPais: 'KW', alternativas: ['Kuwait', 'Bahrein', 'Arábia Saudita', 'Qatar'], respostaCorreta: 'Kuwait' },
+  { codigoPais: 'OM', alternativas: ['Omã', 'Bahrein', 'Iraque', 'Qatar'], respostaCorreta: 'Omã' },
+  { codigoPais: 'UA', alternativas: ['Ucrânia', 'Rússia', 'Polônia', 'Bielorrússia'], respostaCorreta: 'Ucrânia' },
+  { codigoPais: 'BY', alternativas: ['Bielorrússia', 'Rússia', 'Ucrânia', 'Polônia'], respostaCorreta: 'Bielorrússia' },
+  { codigoPais: 'RO', alternativas: ['Romênia', 'Bulgária', 'Sérvia', 'Hungria'], respostaCorreta: 'Romênia' },
+  { codigoPais: 'HR', alternativas: ['Croácia', 'Bósnia e Herzegovina', 'Sérvia', 'Montenegro'], respostaCorreta: 'Croácia' },
+
 ];
+
 
 type Props = {
   pontos: number;
