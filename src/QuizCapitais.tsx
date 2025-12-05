@@ -80,14 +80,14 @@ const QuizCapitais = ({ pontos, onAcerto, voltar }: Props) => {
   const [pontuacaoLocal, setPontuacaoLocal] = useState(0);
   const [finalizado, setFinalizado] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const [tempoRestante, setTempoRestante] = useState(10);
+  const [tempoRestante, setTempoRestante] = useState(20);
   const [alternativasEmbaralhadas, setAlternativasEmbaralhadas] = useState<string[]>([]);
 
   const perguntaAtual = perguntas[indice];
 
   useEffect(() => {
     setAlternativasEmbaralhadas(embaralhar(perguntaAtual.alternativas));
-    setTempoRestante(10);
+    setTempoRestante(20);
   }, [indice]);
 
   useEffect(() => {
@@ -108,7 +108,7 @@ const QuizCapitais = ({ pontos, onAcerto, voltar }: Props) => {
 
     const timer = setTimeout(() => {
       setTempoRestante((t) => t - 1);
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [tempoRestante, finalizado]);

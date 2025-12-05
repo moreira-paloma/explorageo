@@ -77,7 +77,7 @@ const QuizHistorico = ({ pontos, onAcerto }: Props) => {
   const [pontuacaoLocal, setPontuacaoLocal] = useState(0);
   const [finalizado, setFinalizado] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const [tempoRestante, setTempoRestante] = useState(10);
+  const [tempoRestante, setTempoRestante] = useState(20);
   const [alternativasEmbaralhadas, setAlternativasEmbaralhadas] = useState<string[]>([]);
 
   const perguntaAtual = perguntas[indice];

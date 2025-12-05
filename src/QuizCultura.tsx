@@ -78,7 +78,7 @@ const QuizCultura = ({ pontos, onAcerto, voltar }: Props) => {
   const [indice, setIndice] = useState(0);
   const [pontuacao, setPontuacao] = useState(0);
   const [finalizado, setFinalizado] = useState(false);
-  const [tempoRestante, setTempoRestante] = useState(10);
+  const [tempoRestante, setTempoRestante] = useState(20);
   const [alternativasEmbaralhadas, setAlternativasEmbaralhadas] = useState<string[]>([]);
   const [feedback, setFeedback] = useState('');
 
@@ -86,7 +86,7 @@ const QuizCultura = ({ pontos, onAcerto, voltar }: Props) => {
 
   useEffect(() => {
     setAlternativasEmbaralhadas(embaralhar(perguntaAtual.alternativas));
-    setTempoRestante(10);
+    setTempoRestante(20);
   }, [indice]);
 
   useEffect(() => {
@@ -107,7 +107,7 @@ const QuizCultura = ({ pontos, onAcerto, voltar }: Props) => {
 
     const timer = setTimeout(() => {
       setTempoRestante((t) => t - 1);
-    }, 1000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [tempoRestante, finalizado]);

@@ -82,14 +82,14 @@ const QuizBandeiras = ({ pontos, onAcerto, voltar, userId }: Props) => {
   const [pontuacaoLocal, setPontuacaoLocal] = useState(0);
   const [finalizado, setFinalizado] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const [tempoRestante, setTempoRestante] = useState(10);
+  const [tempoRestante, setTempoRestante] = useState(20);
   const [alternativasEmbaralhadas, setAlternativasEmbaralhadas] = useState<string[]>([]);
 
   const perguntaAtual = perguntas[indice];
 
   useEffect(() => {
     setAlternativasEmbaralhadas(embaralhar(perguntaAtual.alternativas));
-    setTempoRestante(10);
+    setTempoRestante(20);
   }, [indice]);
 
   useEffect(() => {
@@ -106,7 +106,7 @@ const QuizBandeiras = ({ pontos, onAcerto, voltar, userId }: Props) => {
       }, 1500);
       return;
     }
-    const timer = setTimeout(() => setTempoRestante(t => t - 1), 1000);
+    const timer = setTimeout(() => setTempoRestante(t => t - 1), 2000);
     return () => clearTimeout(timer);
   }, [tempoRestante, finalizado]);
 
@@ -126,7 +126,7 @@ const QuizBandeiras = ({ pontos, onAcerto, voltar, userId }: Props) => {
         incremento: acertou ? 1 : 0,
         quiz: 'Bandeiras',
         acertou,
-        tempoResposta: 10 - tempoRestante
+        tempoResposta: 20 - tempoRestante
       });
       console.log("Resposta do backend:", res.data);
     } catch (err) {
