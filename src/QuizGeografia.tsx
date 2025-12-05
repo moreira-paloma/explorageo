@@ -72,6 +72,7 @@ const perguntas: Pergunta[] = [
 type Props = {
   pontos: number;
   onAcerto?: () => void;
+  voltar: () => void; 
 };
 
 const QuizGeografia = ({ pontos, onAcerto }: Props) => {
@@ -152,7 +153,8 @@ const QuizGeografia = ({ pontos, onAcerto }: Props) => {
           <div className="text-red-500 font-bold text-lg mb-4">
             ⏳ Tempo restante: {tempoRestante}s
           </div>
-          <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+          <div className="grid grid-cols-2 gap-4 max-w-md mx-auto items-stretch">
+
             {alternativasEmbaralhadas.map((alt) => (
               <button
                 key={alt}

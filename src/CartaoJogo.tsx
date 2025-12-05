@@ -3,12 +3,13 @@ import React from 'react';
 interface Props {
   titulo: string;
   descricao: string;
+  cor: string;
   emoji: string;
   disponivel: boolean;
   onClick: () => void;
 }
 
-// Gradientes personalizados por tema
+
 const cores: Record<string, string> = {
   azul1: 'from-blue-900 to-blue-700',
   azul2: 'from-indigo-900 to-indigo-700',
@@ -25,7 +26,7 @@ const CartaoJogo: React.FC<Props> = ({
   disponivel,
   onClick,
 }) => {
-  // Força todos os cards a usarem o gradiente azul1
+ 
   const gradiente = cores.azul1;
 
   return (

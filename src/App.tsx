@@ -182,8 +182,8 @@ function App() {
 
       <main className="flex-grow max-w-6xl mx-auto px-6 py-12">
         {telaAtual === 'inicio' && (
-          <div className="text-center mb-12 relative z-10">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-white bg-white-300 px-4 py-2 inline-block rounded shadow-lg">
+          <div className="text-center mb-12 relative z-14">
+            <h2 className="text-5xl md:text-6xl font-extrabold mb-4 text-white bg-white-800 px-4 py-2 inline-block rounded shadow-lg">
               🧭 EXPLORA GEO 🌍
             </h2>
             <p className="text-lg md:text-xl text-white mb-8">
@@ -209,6 +209,7 @@ function App() {
         )}
 
         {telaAtual === 'bandeiras' && (
+
           <QuizBandeiras
             onAcerto={() => {
               mostrarParticulas();
@@ -216,6 +217,8 @@ function App() {
             }}
             pontos={pontos}
             voltar={() => setTelaAtual('inicio')}
+            userId={usuarioLogado?.userId || ""} 
+
           />
         )}
 

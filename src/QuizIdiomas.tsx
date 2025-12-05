@@ -72,6 +72,7 @@ const perguntas: Pergunta[] = [
 type Props = {
   pontos: number;
   onAcerto?: () => void;
+  voltar: () => void; 
 };
 
 const QuizIdiomas = ({ pontos, onAcerto }: Props) => {
